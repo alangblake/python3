@@ -1,8 +1,26 @@
 import openai
+import os
 
+# Get the current operating system
+current_os = os.name
+
+# Define the file path based on the operating system
+if current_os == 'nt':  # Windows
+    file_path = r'C:\Users\alang\OneDrive\Documents\chatGPT - API Key.txt'
+else:  # Linux, macOS, etc.
+    file_path = '/path/to/file.txt'
+
+# Read the file
+try:
+    with open(file_path, 'r') as file:
+        content = file.read()
+        print(content)
+except FileNotFoundError:
+    print(f"File '{file_path}' not found.")
+except Exception as e:
+    print(f"An error occurred while reading the file: {e}")
 # Set up your OpenAI API credentials
-openai.api_key = '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'
-
+openai.api_key = content
 
 # Define a function to interact with the ChatGPT model
 def chat_with_gpt(prompt):
@@ -21,11 +39,20 @@ def chat_with_gpt(prompt):
     return None
 
 
-# Example usage
-prompt = input("Enter Question :")
-response = chat_with_gpt(prompt)
-if response:
-    print(response)
-else:
-    print("No response from the model.")
+# Main loop
+while True:
+    # Get user input
+    prompt = input("User: ")
 
+    # Check if the exit prompt is given
+    if prompt.lower() == 'exit':
+        print("Goodbye!")
+        break
+
+    # Get response from the model
+    response = chat_with_gpt(prompt)
+
+    if response:
+        print("ChatGPT: " + response)
+    else:
+        print("ChatGPT: Sorry, I couldn't generate a response.")
