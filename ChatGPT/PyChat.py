@@ -8,7 +8,7 @@ current_os = os.name
 if current_os == 'nt':  # Windows
     file_path = r'C:\Users\alang\OneDrive\Documents\chatGPT - API Key.txt'
 else:  # Linux, macOS, etc.
-    file_path = '/path/to/file.txt'
+    file_path = '/home/alanblake/Documents/chatGPT-APIKey.txt'
 
 # Read the file
 try:
